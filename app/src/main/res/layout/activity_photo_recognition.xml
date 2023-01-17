@@ -1,0 +1,98 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:background="@color/teal_700"
+    tools:context=".PhotoRecognitionActivity">
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/photoRecognitionLayout"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        >
+
+    <Button
+        android:id="@+id/getPhoto"
+        android:layout_width="100dp"
+        android:layout_height="56dp"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentBottom="true"
+        android:layout_marginBottom="44dp"
+        android:clickable="true"
+        android:scaleType="center"
+        android:src="@android:drawable/ic_menu_close_clear_cancel"
+        android:text="Get photo"
+        android:textColor="@color/white"
+        app:backgroundTint="@color/purple_500"
+        app:fabSize="auto"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toStartOf="@+id/getPhoto"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:tint="@color/white"
+        tools:ignore="NotSibling" />
+
+    <Button
+        android:id="@+id/detectFromPhoto"
+        android:layout_width="140dp"
+        android:layout_height="56dp"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentBottom="true"
+        android:layout_marginBottom="44dp"
+        android:clickable="true"
+        android:scaleType="center"
+        android:src="@android:drawable/ic_menu_close_clear_cancel"
+        android:text="DETECT"
+        android:textColor="@color/white"
+        app:backgroundTint="@color/purple_500"
+        app:fabSize="auto"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.498"
+        app:layout_constraintStart_toStartOf="@+id/storageImage"
+        app:tint="@color/white" />
+
+
+        <ImageView
+            android:id="@+id/storageImage"
+            android:layout_width="match_parent"
+            android:layout_height="530dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <com.google.android.material.chip.ChipGroup
+            android:id="@+id/chip_group"
+            style="@style/Widget.MaterialComponents.ChipGroup"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:layout_marginBottom="8dp"
+            app:layout_constraintBottom_toTopOf="@+id/detectFromPhoto"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/storageImage"
+            app:layout_constraintVertical_bias="0.1"
+            android:textSize="10dp"
+            />
+        <com.google.android.material.floatingactionbutton.FloatingActionButton
+        android:id="@+id/backButton"
+        android:layout_width="56dp"
+        android:layout_height="56dp"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentBottom="true"
+        android:layout_marginEnd="16dp"
+        android:layout_marginBottom="44dp"
+        android:clickable="true"
+        android:scaleType="center"
+        android:src="@android:drawable/ic_menu_close_clear_cancel"
+        app:backgroundTint="@color/purple_500"
+        app:fabSize="auto"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:tint="@color/white"
+        tools:ignore="SpeakableTextPresentCheck" />
+</androidx.constraintlayout.widget.ConstraintLayout>
+</layout>

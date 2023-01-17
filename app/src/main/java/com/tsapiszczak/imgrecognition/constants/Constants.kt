@@ -4,8 +4,11 @@ import android.Manifest
 
 
 object Constants  {
-    val PERMISSIONS= arrayOf(Manifest.permission.CAMERA)
-    val PERMISSIONSS= arrayOf(Manifest.permission.INTERNET)
+    val CAMERA_PERMISSIONS= arrayOf(Manifest.permission.CAMERA)
+    val WRITE_EXTERNAL_STORAGE_PERMISSION= arrayOf(Manifest.permission.WRITE_EXTERNAL_STORAGE)
+    val EXTERNAL_STORAGE_PERMISSION= arrayOf(Manifest.permission.READ_EXTERNAL_STORAGE)
     const val cam="CameraX "
-    const val REQUEST_CODE_PERMISSIONS=123
+    const val   REQUEST_CODE_PERMISSIONS=123
+    const val  EXTERNAL_REQUEST_CODE_PERMISSIONSS=121
+    const val  EXTERNAL_WRITE_REQUEST_CODE_PERMISSIONSS=122
 }
