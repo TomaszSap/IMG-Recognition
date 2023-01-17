@@ -1,5 +1,6 @@
 package com.tsapiszczak.imgrecognition
 
+import android.annotation.SuppressLint
 import android.content.Intent
 import android.content.pm.PackageManager
 import android.os.Bundle
@@ -13,7 +14,7 @@ import org.jetbrains.kotlinx.dl.dataset.embedded.fashionMnist
 
 
 class MainActivity : AppCompatActivity() {
-    private lateinit var binding:ActivityMainBinding //connecting xml with class, no need to use findviewbyid
+    private lateinit var binding:ActivityMainBinding
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding=ActivityMainBinding.inflate(layoutInflater)
@@ -33,10 +34,11 @@ class MainActivity : AppCompatActivity() {
             Toast.makeText(this,"You have denied permissions",Toast.LENGTH_LONG).show()
 
             ActivityCompat.requestPermissions(this, Constants.EXTERNAL_STORAGE_PERMISSION,
-                Constants.EXTERNAL_REQUEST_CODE_PERMISSIONSS)
+                Constants.EXTERNAL_REQUEST_CODE_PERMISSIONS)
         }
     }
 
+    @SuppressLint("SuspiciousIndentation")
     private fun startButtonClick() {
 
         if (permissionGranted() && writeStoragePermissionGranted() ){
@@ -49,7 +51,7 @@ class MainActivity : AppCompatActivity() {
                 Constants.REQUEST_CODE_PERMISSIONS)
             else
             ActivityCompat.requestPermissions(this, Constants.WRITE_EXTERNAL_STORAGE_PERMISSION,
-                Constants.EXTERNAL_WRITE_REQUEST_CODE_PERMISSIONSS)
+                Constants.EXTERNAL_WRITE_REQUEST_CODE_PERMISSIONS)
         }
     }
     private fun permissionGranted():Boolean{

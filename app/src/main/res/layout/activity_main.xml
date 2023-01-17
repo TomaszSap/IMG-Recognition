@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/teal_700"
+    android:background="@color/backgroundapp"
     tools:context=".MainActivity">
 
 
@@ -15,9 +15,10 @@
        android:fontFamily="@font/trajanprobold"
        android:text="Start"
        android:textSize="30dp"
-       android:background="@drawable/rounded_button"
+       app:backgroundTint="@color/blue"
        app:layout_constraintBottom_toBottomOf="parent"
        app:layout_constraintEnd_toEndOf="parent"
+       android:textColor="@color/white"
        app:layout_constraintHorizontal_bias="0.498"
        app:layout_constraintStart_toStartOf="parent"
        app:layout_constraintTop_toBottomOf="@+id/textView"
@@ -27,10 +28,11 @@
        android:id="@+id/storageButton"
        android:layout_width="156dp"
        android:layout_height="74dp"
-       android:background="@drawable/rounded_button"
+       app:backgroundTint="@color/blue"
        android:fontFamily="@font/trajanprobold"
        android:text="Photo from storage"
        android:textSize="18dp"
+       android:textColor="@color/white"
        app:layout_constraintBottom_toBottomOf="parent"
        app:layout_constraintEnd_toEndOf="parent"
        app:layout_constraintHorizontal_bias="0.498"

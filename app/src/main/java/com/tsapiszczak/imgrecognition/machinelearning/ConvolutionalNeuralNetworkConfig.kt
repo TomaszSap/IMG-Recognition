@@ -76,25 +76,6 @@ import com.tsapiszczak.imgrecognition.databinding.ActivityPhotoRecognitionBindin
             }
         })
     }
-   /* @SuppressLint("UnsafeOptInUsageError")
-    fun detectFromPhoto(context: Context, binding: ActivityPhotoRecognitionBinding)
-    {
-        if (binding.photoRecognitionLayout.childCount>4)
-                binding.photoRecognitionLayout.removeViewAt(4)
-        val drawable:BitmapDrawable = binding.storageImage.getDrawable() as BitmapDrawable
-        binding.storageImage.buildDrawingCache()
-        val bmap: Bitmap = drawable.bitmap
-        binding.storageImage.rotation.toInt()
-        val process=InputImage.fromBitmap(bmap,binding.storageImage.rotation.toInt())
-        objectDetector.process(process).addOnSuccessListener{objects->
-            for(i in objects)
-            {
-                val recognized= FrameConfig(context,text=i.labels.firstOrNull()?.text ?: "Not recognized",frame = i.boundingBox)
-                binding.photoRecognitionLayout.addView(recognized)
-            }
-        }.addOnFailureListener{
-            Log.v("CameraxActivity ","Exception: ${it.message}")
-        }*/
    @SuppressLint("UnsafeOptInUsageError")
    fun detectFromPhoto(context: Context, binding: ActivityPhotoRecognitionBinding)
    {
@@ -107,22 +88,15 @@ import com.tsapiszczak.imgrecognition.databinding.ActivityPhotoRecognitionBindin
        objectDetector.process(process).addOnSuccessListener{objects->
            for(i in objects)
            {
-              val x= Chip(context)//,null, com.google.android.material.R.style.Widget_MaterialComponents_Chip_Choice)
-               x.isCloseIconVisible=true
-               x.isClickable = false
-               x.setTextColor(Color.parseColor("#0088BE"))
-               x.setText(i.labels.firstOrNull()?.text ?: "Not recognized")
-               binding.chipGroup.addView(x)
+              val chip= Chip(context,null, com.google.android.material.R.style.Widget_MaterialComponents_Chip_Choice)
+               chip.isClickable = false
+               chip.setTextColor(Color.parseColor("#0088BE"))
+               chip.setText(i.labels.firstOrNull()?.text ?: "Not recognized")
+               binding.chipGroup.addView(chip)
            }
        }.addOnFailureListener{
-           Log.v("CameraxActivity ","Exception: ${it.message}")
+           Log.v("PhotoRecognitionActivity ","Exception: ${it.message}")
        }
 }
-
-
-
-    private fun convertImageViewToBitmap(v: ImageView): Bitmap? {
-        return (v.getDrawable() as BitmapDrawable).bitmap
-    }
 
 }

@@ -37,9 +37,7 @@ class CameraxActivity : AppCompatActivity()
         imageRecognition.init(true)
         binding = ActivityCameraxBinding.inflate(layoutInflater)
         setContentView(binding.root)
-
         photoDirectory= setFileDirectory()
-
         binding.backButton.setOnClickListener{
             backButtonClick()
         }
