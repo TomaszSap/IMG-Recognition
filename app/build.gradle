@@ -1,6 +1,8 @@
 plugins {
     id 'com.android.application'
     id 'org.jetbrains.kotlin.android'
+    id 'kotlin-android-extensions'
+    id 'org.jetbrains.kotlinx.kotlin-deeplearning-gradle-plugin' version '0.5.0'
 }
 
 android {
@@ -39,6 +41,7 @@ android {
     dataBinding {
         enabled=true
     }
+    ndkVersion ndkVersion
 }
 
 dependencies{
@@ -52,7 +55,8 @@ dependencies{
     testImplementation 'junit:junit:4.13.2'
     androidTestImplementation 'androidx.test.ext:junit:1.1.4'
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.5.0'
-    def kotlindl_version="0.5.1"
+    def kotlindl_version="0.5.0"
+    implementation "org.jetbrains.kotlinx:kotlin-deeplearning-visualization:${kotlindl_version}"
     implementation "org.jetbrains.kotlinx:kotlin-deeplearning-onnx:${kotlindl_version}"
     implementation "org.jetbrains.kotlinx:kotlin-deeplearning-api:${kotlindl_version}"
     implementation "org.jetbrains.kotlinx:kotlin-deeplearning-impl:${kotlindl_version}"
@@ -68,4 +72,8 @@ dependencies{
     implementation 'androidx.camera:camera-lifecycle:1.1.0-alpha03'
     // If you want to additionally use the CameraX Extensions library
     implementation "androidx.camera:camera-extensions:${camerax_version}"
+}
+downloadKotlinDLModels {
+    models = ["SSDMobileNetV1"]
+    overwrite = false
 }

@@ -11,8 +11,6 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         >
-
-
         <androidx.camera.view.PreviewView
             android:id="@+id/cameraObj"
             android:layout_width="0dp"
@@ -21,7 +19,6 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-
             />
         <Button
             android:id="@+id/takePhoto"
@@ -60,9 +57,13 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:tint="@color/white"
             tools:ignore="SpeakableTextPresentCheck" />
+        <com.tsapiszczak.imgrecognition.machinelearning.ConvolutionalNeuralNetworkConfig
+            android:id="@+id/detect_object_view"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"/>
     </androidx.constraintlayout.widget.ConstraintLayout>
-
-
-
-
 </layout>

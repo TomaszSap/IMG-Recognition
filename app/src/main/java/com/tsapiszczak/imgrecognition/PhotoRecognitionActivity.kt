@@ -13,12 +13,12 @@ import com.tsapiszczak.imgrecognition.databinding.ActivityPhotoRecognitionBindin
 import com.tsapiszczak.imgrecognition.machinelearning.ConvolutionalNeuralNetworkConfig
 
 class PhotoRecognitionActivity : AppCompatActivity() {
-    val imageRecognition: ConvolutionalNeuralNetworkConfig = ConvolutionalNeuralNetworkConfig()
+    //val imageRecognition: ConvolutionalNeuralNetworkConfig = ConvolutionalNeuralNetworkConfig()
     private lateinit var binding:ActivityPhotoRecognitionBinding
     private lateinit var imageView: ImageView
     var isPhoto:Boolean= false
     override fun onCreate(savedInstanceState: Bundle?) {
-        imageRecognition.init(false)
+      //  imageRecognition.init(false)
         super.onCreate(savedInstanceState)
         binding = ActivityPhotoRecognitionBinding.inflate(layoutInflater)
         setContentView(binding.root)
@@ -50,7 +50,7 @@ class PhotoRecognitionActivity : AppCompatActivity() {
     private fun detect()
     {
         if(isPhoto==true){
-        imageRecognition.detectFromPhoto(this,binding)
+        //imageRecognition.detectFromPhoto(this,binding)
             isPhoto=false
         }
         else

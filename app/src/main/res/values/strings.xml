@@ -13,4 +13,6 @@
     <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="title_activity_main2">MainActivity2</string>
     <string name="title_activity_photo">PhotoActivity</string>
+    <string name="label_objects">%d objects</string>
+    <string name="mobilenet_v1">MobilenetV1</string>
 </resources>
