@@ -31,6 +31,5 @@ class FrameConfig()
         framePaint.color=color
         framePaint.strokeWidth=10f
         framePaint.style=Paint.Style.STROKE
-       // framePaint.strokeWidth=resources.getDimensionPixelSize.toFloat()
     }
 }

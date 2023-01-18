@@ -61,8 +61,7 @@ class CameraxActivity : AppCompatActivity()
             }
         })
     }
-    private fun startCamera()
-    {
+    private fun startCamera(){
         imageCapture=ImageCapture.Builder().build()
         cameraProviderFuture = ProcessCameraProvider.getInstance(this)
         cameraProviderFuture.addListener({
@@ -95,8 +94,7 @@ class CameraxActivity : AppCompatActivity()
                         imageAnalysis,imageCapture
                     )
                 } catch (e: RuntimeException) {
-                    Log.e("CameraProcessor from CameraxActivity: ", "Use case binding failed", e)
-
+                    Log.e(Constants.cam, "Use case binding failed", e)
                 }
             }
         },backgroundExecutor)

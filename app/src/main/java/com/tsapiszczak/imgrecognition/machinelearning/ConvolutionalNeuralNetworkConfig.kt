@@ -87,13 +87,9 @@ data class ImageMetadata(
 
          return PredictedObject(detections)
      }
-    class PredictedClass(private val label: String, val confidence: Float)  {
-        val shapes: List<FlatShape<*>> get() = emptyList()
-         fun getText(context: Context): String = label
-    }
 }
 class ImageAnalyzerProxy(private val imageAnalyzer: ModelConfig): ImageAnalysis.Analyzer {
     override fun analyze(image: ImageProxy) {
-        imageAnalyzer.analyze(image,true)
+        imageAnalyzer.analyze(image,false)
     }
 }

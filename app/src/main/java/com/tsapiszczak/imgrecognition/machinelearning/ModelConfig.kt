@@ -11,13 +11,10 @@ class ModelConfig(
     private val uiUpdateCallBack: (AnalysisResult?) -> Unit
 ) {
     private val hub = ONNXModelHub(context)
-    val x= ONNXModels.ObjectDetection.SSDMobileNetV1.pretrainedModel(hub)
+    val modelResource= ONNXModels.ObjectDetection.SSDMobileNetV1.pretrainedModel(hub)
     fun analyze(image: ImageProxy, isImageFlipped: Boolean) {
-        val start = SystemClock.uptimeMillis()
-        val model=ModelRecognition(x)
+        val model=ModelRecognition(modelResource)
         val result= model.analyze(image, 0.5f)
-        val end = SystemClock.uptimeMillis()
-
         val rotationDegrees = image.imageInfo.rotationDegrees
         image.close()
 
@@ -30,5 +27,4 @@ class ModelConfig(
             )
         }
     }
-
 }
