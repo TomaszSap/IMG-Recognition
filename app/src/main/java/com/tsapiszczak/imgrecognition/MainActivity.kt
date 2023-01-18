@@ -10,8 +10,6 @@ import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat
 import com.tsapiszczak.imgrecognition.constants.Constants
 import com.tsapiszczak.imgrecognition.databinding.ActivityMainBinding
-import org.jetbrains.kotlinx.dl.dataset.embedded.fashionMnist
-
 
 class MainActivity : AppCompatActivity() {
     private lateinit var binding:ActivityMainBinding

@@ -1,5 +1,4 @@
 package com.tsapiszczak.imgrecognition.machinelearning
-
 import android.content.Context
 import org.jetbrains.kotlinx.dl.api.inference.FlatShape
 

@@ -21,12 +21,10 @@ class ImageAnalyzer(
         val rotationDegrees = image.imageInfo.rotationDegrees
         image.close()
 
-        if (result == null || result.confidence <  0.5f) {
-            uiUpdateCallBack(AnalysisResult.Empty(end - start))
-        } else {
+        if (result != null) {
             uiUpdateCallBack(
                 AnalysisResult.WithPrediction(
-                    result, end - start,
+                    result,
                     ImageMetadata(image.width, image.height, isImageFlipped, rotationDegrees)
                 )
             )

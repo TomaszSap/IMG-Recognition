@@ -2,32 +2,18 @@ package com.tsapiszczak.imgrecognition.machinelearning
 
 import android.content.Context
 import android.graphics.Canvas
-import android.os.SystemClock
 import android.util.AttributeSet
-import android.util.Log
-import android.util.Size
 import androidx.camera.core.*
-import androidx.camera.lifecycle.ProcessCameraProvider
 import androidx.camera.view.PreviewView
-import androidx.lifecycle.LifecycleOwner
-import com.google.mlkit.common.model.LocalModel
-import com.google.mlkit.vision.objects.ObjectDetector
 import com.tsapiszczak.imgrecognition.FrameConfig
 import com.tsapiszczak.imgrecognition.R
 import org.jetbrains.kotlinx.dl.api.inference.FlatShape
-import org.jetbrains.kotlinx.dl.api.inference.facealignment.Landmark
 import org.jetbrains.kotlinx.dl.api.inference.objectdetection.DetectedObject
-import org.jetbrains.kotlinx.dl.api.inference.posedetection.DetectedPose
-import org.jetbrains.kotlinx.dl.onnx.inference.ONNXModelHub
-import org.jetbrains.kotlinx.dl.onnx.inference.ONNXModels
-import org.jetbrains.kotlinx.dl.onnx.inference.classification.ImageRecognitionModel
-import org.jetbrains.kotlinx.dl.onnx.inference.classification.predictTopKObjects
 import org.jetbrains.kotlinx.dl.onnx.inference.executionproviders.ExecutionProvider
 import org.jetbrains.kotlinx.dl.onnx.inference.inferUsing
 import org.jetbrains.kotlinx.dl.onnx.inference.objectdetection.SSDLikeModel
 import org.jetbrains.kotlinx.dl.onnx.inference.objectdetection.detectObjects
 import org.jetbrains.kotlinx.dl.visualization.*
-import java.util.concurrent.ExecutorService
 
 
 //configuration,building and detection based on ... model
@@ -57,13 +43,6 @@ import java.util.concurrent.ExecutorService
     private fun FlatShape<*>.flip(): FlatShape<*> {
         return map { x, y -> 1 - x to y }
     }
-    fun analyze(model: SSDLikeModel, image: ImageProxy, confidenceThreshold: Float) : Prediction?{
-        val detections = model.inferUsing(ExecutionProvider.CPU()) {
-            it.detectObjects(image, -1)
-        }.filter { it.probability >= confidenceThreshold }
-        if (detections.isEmpty()) return null
-        return PredictedObject(detections)
-    }
 }
 class PredictedObject(private val detections: List<DetectedObject>) :
     Prediction {
@@ -75,13 +54,11 @@ class PredictedObject(private val detections: List<DetectedObject>) :
         return context.getString(R.string.label_objects, detections.size)
     }
 }
-sealed class AnalysisResult(val processTimeMs: Long){
-    class Empty(processTimeMs: Long) : AnalysisResult(processTimeMs)
+sealed class AnalysisResult(){
     class WithPrediction(
         val prediction: Prediction,
-        processTimeMs: Long,
         val metadata: ImageMetadata
-    ) : AnalysisResult(processTimeMs)
+    ) : AnalysisResult()
 }
 data class ImageMetadata(
     val width: Int,
@@ -110,13 +87,13 @@ data class ImageMetadata(
 
          return PredictedObject(detections)
      }
-    class PredictedClass(private val label: String, override val confidence: Float) : Prediction {
-        override val shapes: List<FlatShape<*>> get() = emptyList()
-        override fun getText(context: Context): String = label
+    class PredictedClass(private val label: String, val confidence: Float)  {
+        val shapes: List<FlatShape<*>> get() = emptyList()
+         fun getText(context: Context): String = label
     }
 }
-class ImageAnalyzerProxy(private val delegate: ImageAnalyzer): ImageAnalysis.Analyzer {
+class ImageAnalyzerProxy(private val imageAnalyzer: ImageAnalyzer): ImageAnalysis.Analyzer {
     override fun analyze(image: ImageProxy) {
-        delegate.analyze(image,true)
+        imageAnalyzer.analyze(image,true)
     }
 }
