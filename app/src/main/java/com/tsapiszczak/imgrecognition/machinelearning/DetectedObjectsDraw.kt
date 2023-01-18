@@ -17,7 +17,7 @@ import org.jetbrains.kotlinx.dl.visualization.*
 
 
 //configuration,building and detection based on ... model
- class ConvolutionalNeuralNetworkConfig(context: Context, attrs: AttributeSet) :
+ class DetectedObjectsDraw(context: Context, attrs: AttributeSet) :
     DetectorViewBase<AnalysisResult.WithPrediction>(context, attrs){
     private var bounds: PreviewImageBounds? = null
     var scaleType: PreviewView.ScaleType = PreviewView.ScaleType.FILL_CENTER

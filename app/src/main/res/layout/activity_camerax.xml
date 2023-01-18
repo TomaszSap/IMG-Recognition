@@ -57,7 +57,7 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:tint="@color/white"
             tools:ignore="SpeakableTextPresentCheck" />
-        <com.tsapiszczak.imgrecognition.machinelearning.ConvolutionalNeuralNetworkConfig
+        <com.tsapiszczak.imgrecognition.machinelearning.DetectedObjectsDraw
             android:id="@+id/detect_object_view"
             android:layout_width="0dp"
             android:layout_height="0dp"
