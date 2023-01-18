@@ -16,80 +16,33 @@ import org.jetbrains.kotlinx.dl.onnx.inference.objectdetection.detectObjects
 import org.jetbrains.kotlinx.dl.visualization.*
 
 
-//configuration,building and detection based on ... model
  class DetectedObjectsDraw(context: Context, attrs: AttributeSet) :
-    DetectorViewBase<AnalysisResult.WithPrediction>(context, attrs){
+    DetectorViewBase<GetObject>(context, attrs){
     private var bounds: PreviewImageBounds? = null
     var scaleType: PreviewView.ScaleType = PreviewView.ScaleType.FILL_CENTER
     val frameConfig=FrameConfig()
-    override fun onDetectionSet(detection: AnalysisResult.WithPrediction?) {
-        frameConfig.framePaint
+    override fun onDetectionSet(detection: GetObject?) {
         bounds = detection?.let {
             getPreviewImageBounds(it.metadata.width, it.metadata.height, width, height, scaleType)
         }
     }
-    override fun Canvas.drawDetection(detection: AnalysisResult.WithPrediction) {
+    override fun Canvas.drawDetection(detection: GetObject) {
         val currentBounds = bounds ?: bounds()
         for (s in detection.prediction.shapes) {
-            when (val shape = if (detection.metadata.isImageFlipped) s.flip() else s) {
+            when (s) {
               is DetectedObject-> drawObject(
-                   shape,
+                  s,
                    frameConfig.framePaint,frameConfig.textPaint,
                     currentBounds
                 )
            }
         }
     }
-    private fun FlatShape<*>.flip(): FlatShape<*> {
-        return map { x, y -> 1 - x to y }
-    }
-}
-class PredictedObject(private val detections: List<DetectedObject>) :
-    Prediction {
-    override val shapes: List<FlatShape<*>> get() = detections
-    override val confidence: Float get() = detections.first().probability
-    override fun getText(context: Context): String {
-        val singleObject = detections.singleOrNull()
-        if (singleObject != null) return singleObject.label ?: ""
-        return context.getString(R.string.label_objects, detections.size)
-    }
-}
-sealed class AnalysisResult(){
-    class WithPrediction(
-        val prediction: Prediction,
-        val metadata: ImageMetadata
-    ) : AnalysisResult()
 }
 data class ImageMetadata(
-    val width: Int,
     val height: Int,
-    val isImageFlipped: Boolean
-) {
-    constructor(width: Int, height: Int, isImageFlipped: Boolean, rotationDegrees: Int)
-            : this(
-        if (areDimensionSwitched(rotationDegrees)) height else width,
-        if (areDimensionSwitched(rotationDegrees)) width else height,
-        isImageFlipped
-    )
+    val width: Int,
+    val rotationDegrees: Int
+)
 
-    companion object {
-        private fun areDimensionSwitched(rotationDegrees: Int): Boolean {
-            return rotationDegrees == 90 || rotationDegrees == 270
-        }
-    }
-}
- class ModelRecognition(private val model: SSDLikeModel){
-      fun analyze(image: ImageProxy, confidenceThreshold: Float): Prediction? {
-         val detections = model.inferUsing(ExecutionProvider.CPU()) {
-             it.detectObjects(image, -1)
-         }.filter { it.probability >= confidenceThreshold }
-         if (detections.isEmpty()) return null
 
-         return PredictedObject(detections)
-     }
-}
-class ImageAnalyzerProxy(private val imageAnalyzer: ModelConfig): ImageAnalysis.Analyzer {
-    override fun analyze(image: ImageProxy) {
-        imageAnalyzer.analyze(image,false)
-    }
-}

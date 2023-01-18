@@ -99,14 +99,13 @@ class CameraxActivity : AppCompatActivity()
             }
         },backgroundExecutor)
     }
-    private fun updateView(result: AnalysisResult?) {
+    private fun updateView(result: GetObject?) {
         runOnUiThread {
             if (result == null) {
                 binding.detectObjectView.setDetection(null)
                 return@runOnUiThread
             }
-
-            if (result is AnalysisResult.WithPrediction) {
+            if (result is GetObject) {
                 binding.detectObjectView.setDetection(result)
             } else {
                 binding.detectObjectView.setDetection(null)
