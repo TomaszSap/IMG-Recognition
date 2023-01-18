@@ -5,6 +5,6 @@ import androidx.camera.core.ImageProxy
 
 class ImageAnalyzerProxy(private val imageAnalyzer: ModelConfig): ImageAnalysis.Analyzer {
     override fun analyze(image: ImageProxy) {
-        imageAnalyzer.analyze(image,false)
+        imageAnalyzer.analyze(image)
     }
 }
