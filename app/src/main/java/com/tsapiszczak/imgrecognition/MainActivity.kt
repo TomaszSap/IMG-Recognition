@@ -21,22 +21,8 @@ class MainActivity : AppCompatActivity() {
         setContentView(binding.root)
         binding.startButton.setOnClickListener {startButtonClick()
         }
-        binding.storageButton.setOnClickListener {
-            storageButtonClick()
-        }
     }
 
-    private fun storageButtonClick() {
-        if (storagePermission() ){
-            val intent = Intent(this@MainActivity, PhotoRecognitionActivity::class.java)
-            startActivity(intent)}
-        else{
-            Toast.makeText(this,"You have denied permissions",Toast.LENGTH_LONG).show()
-
-            ActivityCompat.requestPermissions(this, Constants.EXTERNAL_STORAGE_PERMISSION,
-                Constants.EXTERNAL_REQUEST_CODE_PERMISSIONS)
-        }
-    }
 
     @SuppressLint("SuspiciousIndentation")
     private fun startButtonClick() {
@@ -66,8 +52,4 @@ class MainActivity : AppCompatActivity() {
                     PackageManager.PERMISSION_GRANTED
         }
     }
-    private fun storagePermission() :Boolean {
-        return  Constants.EXTERNAL_STORAGE_PERMISSION.all{
-        ContextCompat.checkSelfPermission(baseContext, it)==
-                PackageManager.PERMISSION_GRANTED}}
 }
