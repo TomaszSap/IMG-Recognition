@@ -33,7 +33,7 @@ class MainActivity : AppCompatActivity() {
             if(!permissionGranted())
             ActivityCompat.requestPermissions(this, Constants.CAMERA_PERMISSIONS,
                 Constants.REQUEST_CODE_PERMISSIONS)
-            else
+            if(!writeStoragePermissionGranted())
             ActivityCompat.requestPermissions(this, Constants.WRITE_EXTERNAL_STORAGE_PERMISSION,
                 Constants.EXTERNAL_WRITE_REQUEST_CODE_PERMISSIONS)
         }
