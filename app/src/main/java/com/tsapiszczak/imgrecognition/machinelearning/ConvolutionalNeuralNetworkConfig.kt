@@ -92,7 +92,7 @@ data class ImageMetadata(
          fun getText(context: Context): String = label
     }
 }
-class ImageAnalyzerProxy(private val imageAnalyzer: ImageAnalyzer): ImageAnalysis.Analyzer {
+class ImageAnalyzerProxy(private val imageAnalyzer: ModelConfig): ImageAnalysis.Analyzer {
     override fun analyze(image: ImageProxy) {
         imageAnalyzer.analyze(image,true)
     }

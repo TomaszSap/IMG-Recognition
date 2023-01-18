@@ -66,7 +66,7 @@ class CameraxActivity : AppCompatActivity()
         imageCapture=ImageCapture.Builder().build()
         cameraProviderFuture = ProcessCameraProvider.getInstance(this)
         cameraProviderFuture.addListener({
-            val imageAnalyzer = ImageAnalyzer(
+            val imageAnalyzer = ModelConfig(
                 applicationContext,::updateView
             )
             runOnUiThread {

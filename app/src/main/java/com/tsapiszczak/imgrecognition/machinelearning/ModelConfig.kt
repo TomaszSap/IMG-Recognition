@@ -6,7 +6,7 @@ import androidx.camera.core.ImageProxy
 import org.jetbrains.kotlinx.dl.onnx.inference.ONNXModelHub
 import org.jetbrains.kotlinx.dl.onnx.inference.ONNXModels
 
-class ImageAnalyzer(
+class ModelConfig(
     context: Context,
     private val uiUpdateCallBack: (AnalysisResult?) -> Unit
 ) {
@@ -21,7 +21,7 @@ class ImageAnalyzer(
         val rotationDegrees = image.imageInfo.rotationDegrees
         image.close()
 
-        if (result != null) {
+        if (result != null && result.confidence>0.6f) {
             uiUpdateCallBack(
                 AnalysisResult.WithPrediction(
                     result,
