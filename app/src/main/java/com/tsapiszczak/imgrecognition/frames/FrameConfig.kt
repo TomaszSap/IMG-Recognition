@@ -1,4 +1,4 @@
-package com.tsapiszczak.imgrecognition
+package com.tsapiszczak.imgrecognition.frames
 
 import android.content.Context
 import android.graphics.Canvas

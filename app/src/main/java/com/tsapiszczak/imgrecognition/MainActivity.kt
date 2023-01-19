@@ -1,6 +1,5 @@
 package com.tsapiszczak.imgrecognition
 
-import android.annotation.SuppressLint
 import android.content.Intent
 import android.content.pm.PackageManager
 import android.os.Bundle
@@ -22,7 +21,6 @@ class MainActivity : AppCompatActivity() {
     }
 
 
-    @SuppressLint("SuspiciousIndentation")
     private fun startButtonClick() {
 
         if (permissionGranted() && writeStoragePermissionGranted() ){

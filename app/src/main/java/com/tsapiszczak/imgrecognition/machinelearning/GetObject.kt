@@ -1,6 +1,7 @@
 package com.tsapiszczak.imgrecognition.machinelearning
 
 class GetObject(
-    val prediction: Prediction,
-    val metadata: ImageMetadata
+    val frameData: ObjectFrameData,
+    val height: Int,
+    val width: Int
 )

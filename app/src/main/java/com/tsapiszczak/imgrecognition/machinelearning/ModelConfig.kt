@@ -15,13 +15,13 @@ class ModelConfig(
     fun analyze(image: ImageProxy) {
         val model=ModelRecognition(modelResource)
         val result= model.analyze(image, 0.5f)
-        val rotationDegrees = image.imageInfo.rotationDegrees
         image.close()
         if (result != null && result.confidence>0.5f) {
             updateView(
                 GetObject(
                     result,
-                    ImageMetadata(image.width, image.height, rotationDegrees)
+                    image.width,
+                    image.height
                 )
             )
         }

@@ -7,10 +7,10 @@ import org.jetbrains.kotlinx.dl.onnx.inference.objectdetection.SSDLikeModel
 import org.jetbrains.kotlinx.dl.onnx.inference.objectdetection.detectObjects
 
 class ModelRecognition(private val model: SSDLikeModel){
-    fun analyze(image: ImageProxy, confidenceThreshold: Float): Prediction? {
+    fun analyze(image: ImageProxy, objectConficence: Float): ObjectFrameData? {
         val detections = model.inferUsing(ExecutionProvider.CPU()) {
             it.detectObjects(image, -1)
-        }.filter { it.probability >= confidenceThreshold }
+        }.filter{ it.probability >= objectConficence}
         if (detections.isEmpty()) return null
         return PredictedObject(detections)
     }

@@ -84,7 +84,7 @@ class CameraxActivity : AppCompatActivity()
                         .setBackpressureStrategy(ImageAnalysis.STRATEGY_KEEP_ONLY_LATEST)
                         .build()
                         .also {
-                            it.setAnalyzer(backgroundExecutor, ImageAnalyzerProxy(imageAnalyzer))
+                            it.setAnalyzer(backgroundExecutor, ImageAnalyzerCNN(imageAnalyzer))
                         }
 
                     cameraProviderFuture.get().bindToLifecycle(
