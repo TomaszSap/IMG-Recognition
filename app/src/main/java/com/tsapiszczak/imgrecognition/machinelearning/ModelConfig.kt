@@ -8,7 +8,7 @@ import org.jetbrains.kotlinx.dl.onnx.inference.ONNXModels
 
 class ModelConfig(
     context: Context,
-    private val uiUpdateCallBack: (GetObject?) -> Unit
+    private val updateView: (GetObject?) -> Unit
 ) {
     private val hub = ONNXModelHub(context)
     val modelResource= ONNXModels.ObjectDetection.SSDMobileNetV1.pretrainedModel(hub)
@@ -18,7 +18,7 @@ class ModelConfig(
         val rotationDegrees = image.imageInfo.rotationDegrees
         image.close()
         if (result != null && result.confidence>0.5f) {
-            uiUpdateCallBack(
+            updateView(
                 GetObject(
                     result,
                     ImageMetadata(image.width, image.height, rotationDegrees)
